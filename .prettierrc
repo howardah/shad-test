@@ -1,0 +1,12 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "endOfLine": "lf",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": false,
+  "printWidth": 100,
+  "arrowParens": "avoid",
+  "operatorPosition": "begin-of-line",
+  "typescriptParamDelimiter": "comma"
+}

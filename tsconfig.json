@@ -1,0 +1,17 @@
+{
+  "extends": "./.nuxt/tsconfig.json",
+  "exclude": [
+    "dist",
+    "node_modules",
+    "playground",
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@shad": ["./src/runtime/components"],
+      "@shad/*": ["./src/runtime/components/*"],
+      "@shadlib": ["./src/runtime/lib"],
+      "@shadlib/*": ["./src/runtime/lib/*"],
+      "@shadlib/utils": ["./src/runtime/lib/utils"]
+    }
+  }
+}
