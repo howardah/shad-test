@@ -16,10 +16,17 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'shadcn-test',
     configKey: 'shadcn-test',
+    // Add compatibility information
+    compatibility: {
+      nuxt: '^3.0.0',
+    },
   },
   // Default configuration options of the Nuxt module
-  defaults: {},
-  setup(_options, nuxt) {
+  defaults: {
+    // Add default theme option
+    theme: 'light',
+  },
+  setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
@@ -29,7 +36,13 @@ export default defineNuxtModule<ModuleOptions>({
 
     installModule('@nuxtjs/tailwindcss', {
       configPath: resolver.resolve('./runtime/tailwind.config.js'),
-      cssPath: resolver.resolve('./runtime/assets/css/tailwind.css'),
+      exposeConfig: true,
+      config: {
+        content: [
+          resolver.resolve('./runtime/components/**/*.{js,vue,ts}'),
+          resolver.resolve('./runtime/lib/**/*.{js,ts}'),
+        ],
+      },
     })
 
     installModule('shadcn-nuxt', {
@@ -57,5 +70,10 @@ export default defineNuxtModule<ModuleOptions>({
         resolvesTo: resolver.resolve('./runtime/lib/utils'),
       },
     ])
+
+    // Use options.theme if needed
+    if (options.theme === 'dark') {
+      // Apply dark theme settings
+    }
   },
 })
